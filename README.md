@@ -150,16 +150,16 @@ Tuần 1:
     
     -> Tự động tải và khởi tạo ứng dụng Trong index.php, Laravel tải tệp tự động vendor/autoload.php để nạp các thư viện cần thiết. Sau đó, ứng dụng được khởi tạo thông qua tệp bootstrap/app.php, tạo một instance của lớp Illuminate\Foundation\Application.
     
-    ->Khởi tạo Kernel Laravel sử dụng HTTP Kernel để xử lý các yêu cầu HTTP. Kernel chịu trách nhiệm quản lý các middleware và định tuyến yêu cầu đến controller tương ứng.
+    -> Khởi tạo Kernel Laravel sử dụng HTTP Kernel để xử lý các yêu cầu HTTP. Kernel chịu trách nhiệm quản lý các middleware và định tuyến yêu cầu đến controller tương ứng.
     
     -> Xử lý middleware Yêu cầu được truyền qua các middleware đã đăng ký. Middleware có thể thực hiện các tác vụ như xác thực, ghi log hoặc xử lý CORS trước khi yêu cầu đến controller.
     
-    ->Định tuyến (Routing) Sau khi qua middleware, yêu cầu được chuyển đến hệ thống định tuyến của Laravel để xác định controller và phương thức cần gọi dựa trên URL và phương thức HTTP.
+    -> Định tuyến (Routing) Sau khi qua middleware, yêu cầu được chuyển đến hệ thống định tuyến của Laravel để xác định controller và phương thức cần gọi dựa trên URL và phương thức HTTP.
     
-    ->Controller và xử lý logic Controller nhận yêu cầu từ router và thực hiện các xử lý logic cần thiết, như truy xuất dữ liệu từ cơ sở dữ liệu thông qua model, xử lý nghiệp vụ và chuẩn bị dữ liệu cho view.
+    -> Controller và xử lý logic Controller nhận yêu cầu từ router và thực hiện các xử lý logic cần thiết, như truy xuất dữ liệu từ cơ sở dữ liệu thông qua model, xử lý nghiệp vụ và chuẩn bị dữ liệu cho view.
     
-    ->Trả về phản hồi (Response) Sau khi controller xử lý xong, một phản hồi HTTP được tạo ra, có thể là một view HTML, JSON hoặc bất kỳ định dạng nào khác. Phản hồi này được gửi lại qua các middleware (sau xử lý) trước khi trả về cho client.
+    -> Trả về phản hồi (Response) Sau khi controller xử lý xong, một phản hồi HTTP được tạo ra, có thể là một view HTML, JSON hoặc bất kỳ định dạng nào khác. Phản hồi này được gửi lại qua các middleware (sau xử lý) trước khi trả về cho client.
     
-    ->Kết thúc (Terminate) Sau khi phản hồi được gửi đi, Laravel thực hiện các tác vụ kết thúc, như ghi log hoặc giải phóng tài nguyên, để hoàn tất vòng đời của yêu cầu.
+    -> Kết thúc (Terminate) Sau khi phản hồi được gửi đi, Laravel thực hiện các tác vụ kết thúc, như ghi log hoặc giải phóng tài nguyên, để hoàn tất vòng đời của yêu cầu.
   
     https://chungnguyen.xyz/posts/laravel-request-lifecycle-laravel-hoat-dong-nhu-the-nao-ban-biet-chua
