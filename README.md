@@ -3,13 +3,13 @@ Tuần 1:
 
 +) tìm hiểu php-laravel-mô hình MVC
   
-    -> Model (Mô hình)
+    -> Model (Mô hình): Đại diện cho dữ liệu và logic nghiệp vụ của ứng dụng. Trong Laravel, Eloquent ORM được sử dụng để tương tác với cơ sở dữ liệu, cho phép định nghĩa các lớp mô hình tương ứng với các bảng trong cơ sở dữ liệu.
   
-    -> View (Giao diện)
+    -> View (Giao diện): Chịu trách nhiệm hiển thị dữ liệu cho người dùng. Laravel sử dụng hệ thống template Blade để tạo ra các giao diện động và linh hoạt. Blade cho phép sử dụng cú pháp ngắn gọn và hỗ trợ kế thừa giao diện, giúp việc quản lý và tái sử dụng mã nguồn trở nên dễ dàng hơn.
   
-    -> Controller (Bộ điều khiển)
+    -> Controller (Bộ điều khiển): Xử lý các yêu cầu từ người dùng, tương tác với Model và trả về View tương ứng. Các controller trong Laravel giúp tổ chức logic xử lý của ứng dụng một cách rõ ràng và có cấu trúc.
   
- - https://www.geeksforgeeks.org/introduction-to-laravel-and-mvc-framework/
+    - https://www.geeksforgeeks.org/introduction-to-laravel-and-mvc-framework/
 
 +) Tìm hiểu cấu trúc của 1 dự án Laravel
 
@@ -87,13 +87,27 @@ Tuần 1:
     
     │── logs/        # Chứa file log của Laravel
 
+ -> Các File Cấu Hình Chính:
+
+    │── .env: File quan trọng chứa các biến môi trường (database, API key, config mail,...).
+    
+    │── composer.json: Cấu hình các dependency của Laravel.
+    
+    │── package.json: Cấu hình package npm (nếu dùng Vue/React).
+    
+    │── artisan: File CLI để chạy lệnh trong Laravel (vd: php artisan serve).
+
     https://hocwebchuan.com/tutorial/laravel/laravel_project_structure.php
 
 +) tìm hiểu route/middleware
 
--> route: https://viblo.asia/p/tim-hieu-ve-route-trong-laravel-V3m5W1pwZO7
+    -> route: Route trong Laravel xác định cách ứng dụng phản hồi các yêu cầu từ người dùng dựa trên URL và phương thức HTTP. Các route được định nghĩa trong các tệp như routes/web.php cho ứng dụng web và routes/api.php cho API. 
+    
+    https://viblo.asia/p/tim-hieu-ve-route-trong-laravel-V3m5W1pwZO7
 
--> middleware: https://topdev.vn/blog/middleware-la-gi/
+    -> middleware: Middleware là các lớp trung gian xử lý yêu cầu HTTP trước khi chúng đến controller hoặc sau khi nhận phản hồi từ controller. Chúng thường được sử dụng để thực hiện các tác vụ như xác thực người dùng, kiểm tra quyền truy cập, ghi log, hoặc xử lý CORS.
+    
+    https://topdev.vn/blog/middleware-la-gi/
 
 +) Làm quen với Laravel bằng cách clone 1 dự án lên github
 
@@ -118,7 +132,34 @@ Tuần 1:
     -> clone dự án có sẵn về máy: git clone https://github.com/be1tui/PHPLaravel
   
 +) Xây dựng project mẫu với form thêm/sửa/xóa 1 sinh viên
+    
+    -> Tạo project: composer create-project laravel/laravel my_project
 
+    -> Tạo Model và Migration: php artisan make:model Sinhvien -m
+
+    -> Tạo CSDL: php artisan migrate
+
+    -> Tạo controller: php artisan make:controller SinhvienController -r
+
+    -> ...
 +) Tìm hiểu cách hoạt động của request
+    
+    -> Trong Laravel, quá trình xử lý một yêu cầu HTTP (request) trải qua nhiều bước từ khi nhận yêu cầu đến khi trả về phản hồi (response). Hiểu rõ vòng đời của request giúp bạn nắm bắt cách Laravel hoạt động và tối ưu hóa ứng dụng hiệu quả hơn.
+    
+    -> Điểm khởi đầu: public/index.php: Mọi yêu cầu HTTP đến ứng dụng Laravel đều được chuyển hướng đến tệp public/index.php. Tệp này đóng vai trò là điểm vào chính, khởi tạo quá trình xử lý của framework.
+    
+    -> Tự động tải và khởi tạo ứng dụng Trong index.php, Laravel tải tệp tự động vendor/autoload.php để nạp các thư viện cần thiết. Sau đó, ứng dụng được khởi tạo thông qua tệp bootstrap/app.php, tạo một instance của lớp Illuminate\Foundation\Application.
+    
+    ->Khởi tạo Kernel Laravel sử dụng HTTP Kernel để xử lý các yêu cầu HTTP. Kernel chịu trách nhiệm quản lý các middleware và định tuyến yêu cầu đến controller tương ứng.
+    
+    -> Xử lý middleware Yêu cầu được truyền qua các middleware đã đăng ký. Middleware có thể thực hiện các tác vụ như xác thực, ghi log hoặc xử lý CORS trước khi yêu cầu đến controller.
+    
+    ->Định tuyến (Routing) Sau khi qua middleware, yêu cầu được chuyển đến hệ thống định tuyến của Laravel để xác định controller và phương thức cần gọi dựa trên URL và phương thức HTTP.
+    
+    ->Controller và xử lý logic Controller nhận yêu cầu từ router và thực hiện các xử lý logic cần thiết, như truy xuất dữ liệu từ cơ sở dữ liệu thông qua model, xử lý nghiệp vụ và chuẩn bị dữ liệu cho view.
+    
+    ->Trả về phản hồi (Response) Sau khi controller xử lý xong, một phản hồi HTTP được tạo ra, có thể là một view HTML, JSON hoặc bất kỳ định dạng nào khác. Phản hồi này được gửi lại qua các middleware (sau xử lý) trước khi trả về cho client.
+    
+    ->Kết thúc (Terminate) Sau khi phản hồi được gửi đi, Laravel thực hiện các tác vụ kết thúc, như ghi log hoặc giải phóng tài nguyên, để hoàn tất vòng đời của yêu cầu.
   
     https://chungnguyen.xyz/posts/laravel-request-lifecycle-laravel-hoat-dong-nhu-the-nao-ban-biet-chua
